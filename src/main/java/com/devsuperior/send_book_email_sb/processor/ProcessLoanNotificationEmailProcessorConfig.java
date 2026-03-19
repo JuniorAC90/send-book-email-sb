@@ -7,7 +7,9 @@ import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class ProcessLoanNotificationEmailProcessorConfig {
 
     @Bean
@@ -16,7 +18,7 @@ public class ProcessLoanNotificationEmailProcessorConfig {
         return new ItemProcessor<UserBookLoan, Mail>() {
             @Override
             public Mail process(UserBookLoan loan) throws Exception {
-                Email from = new Email("aloiziojr1310@gmail.com", "Biblioteca Municipal");
+                Email from = new Email("aloizio_junior@hotmail.com", "Biblioteca Municipal");
                 Email to = new Email(loan.getUser().getEmail());
                 Content content = new Content("text/plain", generateEmailText(loan));
                 Mail mail = new Mail(from, "Notificação devolução livro", to, content);
